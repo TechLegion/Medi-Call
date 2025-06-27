@@ -1,0 +1,1 @@
+# Management package for shifts app 
