@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: medicall-backend
+    env: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: gunicorn medicall.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: False
+      - key: ALLOWED_HOSTS
+        value: .onrender.com
+      - key: DB_NAME
+        fromDatabase:
+          name: medicall-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: medicall-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: medicall-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: medicall-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: medicall-db
+          property: port
+    healthCheckPath: /api/health/
+
+databases:
+  - name: medicall-db
+    databaseName: medicall
+    user: medicall_user
+    plan: free 

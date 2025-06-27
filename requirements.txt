@@ -9,4 +9,5 @@ Pillow==10.4.0
 celery==5.3.4
 redis==5.0.1
 django-filter==24.1
-drf-yasg==1.21.7 
+drf-yasg==1.21.7
+gunicorn==21.2.0 
